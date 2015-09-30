@@ -1,0 +1,14 @@
+{
+  "name": "dotplant/geo-calculator",
+  "description": "Calculating delivery cost based on fixed price and given customer address.",
+  "type": "dotplant2-extension",
+  "minimum-stability": "dev",
+  "require": {
+    "yandex/geo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "DotPlant\\GeoCalculator\\": "src/"
+    }
+  }
+}
