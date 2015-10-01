@@ -27,6 +27,12 @@ $(function () {
                     $getPosition,
                     {"gc-address": $address},
                     function (responce) {
+                        $("body").trigger({
+                            'type': 'geoSearch',
+                            'responce': responce,
+                            'address': $address,
+                            'self' : $this
+                        });
                         $this.prev('.form-group:eq(0)').removeClass('has-error');
                         $input.next('.help-block').html('');
                         $('.gc-pre-price').html('');
