@@ -90,6 +90,13 @@ $(function () {
                 $confirmDistance,
                 {"gc-address": $address, "gc-distance" : $distance},
                 function (responce) {
+                    $("body").trigger({
+                        'type': 'geoCalculation',
+                        'responce': responce,
+                        'address': $address,
+                        'distance': $distance,
+                        'self' : $this
+                    });
                     if (typeof responce.error !== 'undefined') {
                         $this.parents('.right_side:eq(0)').addClass('has-error').children('.help-block').html(responce.error);
                     } else {
