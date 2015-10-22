@@ -46,8 +46,21 @@ class GeoCalculatorController extends Controller
         if (true === empty($this->address)) {
             return ['error' => 'Необходимо указать адрес доставки'];
         }
+
+        $id = ShippingOption::findOne(['handler_class' => GeoCalculatorShippingCostHandler::className()])->id;
+        $handler = ShippingHandlerHelper::createHandlerByShippingOptionId($id);
+
         $api = new Api();
         $api->setQuery($this->address);
+        if ($handler->useAreaLimit) {
+            $api->setArea(
+                $handler->areaLimitLengthLng,
+                $handler->areaLimitLengthLat,
+                $handler->longitude,
+                $handler->latitude
+            );
+            $api->useAreaLimit(true);
+        }
         $api->setLimit(1)->load();
         $this->response = $api->getResponse();
         $count = $this->response->getFoundCount();
