@@ -32,12 +32,32 @@ class GeoCalculatorShippingCostHandler extends AbstractShippingHandler
      * @var float latitude of map start delivery point
      */
     public $latitude;
+
     /**
      * @var float longitude of map start delivery point
      */
     public $longitude;
 
+    /***
+     * @var bool
+     * Использовать ограничение области поиска
+     */
+    public $useAreaLimit = 0;
+
+    /**
+     * @var float
+     * Разница между максимальной и минимальной долготой в градусах
+     */
+    public $areaLimitLengthLng = 2.5;
+
+    /**
+     * @var float
+     * Разница между максимальной и минимальной широтой в градусах
+     */
+    public $areaLimitLengthLat = 2.5;
+
     private $deliveryPrice = 0;
+
     /**
      * @inheritdoc
      */
